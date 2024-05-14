@@ -87,4 +87,11 @@
     )
 
 >{'loss': 0.0528, 'grad_norm': 0.029315194115042686, 'learning_rate': 3.536439665471924e-05, 'epoch': 0.88}<br/>
-{'loss': 0.0867, 'grad_norm': 0.03188520669937134, 'learning_rate': 3.506571087216249e-05, 'epoch': 0.9}
+{'loss': 0.0867, 'grad_norm': 0.03188520669937134, 'learning_rate': 3.506571087216249e-05, 'epoch': 0.9}<br/>
+...<br/>
+{'train_runtime': 3338.7943, 'train_samples_per_second': 4.005, 'train_steps_per_second': 0.501, 'train_loss': 0.03664293684953548, 'epoch': 3.0}<br/>
+100%|----------------------------------------------------------------------------------| 1674/1674 [55:38<00:00, 1.99s/it]
+
+![](https://github.com/weitsung50110/Bert_HugginFace_Train_Predict_SpamEmails/blob/main/github_imgs/train_img.png)
+
+![](https://github.com/weitsung50110/Bert_HugginFace_Train_Predict_SpamEmails/blob/main/github_imgs/test_img.png)
