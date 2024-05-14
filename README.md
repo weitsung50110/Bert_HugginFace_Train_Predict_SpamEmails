@@ -96,7 +96,7 @@ Using Hugging Face's Transformers to implement fine-tuning of the BERT model for
 ![](https://github.com/weitsung50110/Bert_HugginFace_Train_Predict_SpamEmails/blob/main/github_imgs/train_img.png)
 
 SMSSpamCollection_bert_predict 預測講解
-### 預測結果：
+### 文本被tokenized後會變成什麼模樣 ：
 
     X_test_tokenized = tokenizer(X_test, padding=True, truncation=True, max_length=512)
     print(X_test_tokenized)
