@@ -2,7 +2,7 @@
 
 ### SMSSpamCollection_bert.py 訓練講解
 ### 資料準備：
-從 "SMSSpamCollection" 檔案中讀取資料，並分為訓練集和驗證集。
+從 "SMSSpamCollection" 檔案中讀取資料，並分為訓練集和驗證集。<br/>
 將標籤轉換成模型可接受的格式，將 'ham' 改為 0，'spam' 改為 1。
 
     def __getitem__(self, idx):
@@ -14,7 +14,7 @@
 因為val[idx]的idx只能接受數值，無法接收string，因此需要轉換型別。
 
 ### 模型準備：
-使用 BERT 模型的預訓練版本 "bert-base-uncased"，透過 BertForSequenceClassification 來建立文本分類模型。
+使用 BERT 模型的預訓練版本 "bert-base-uncased"，透過 `BertForSequenceClassification` 來建立文本分類模型。<br/>
 初始化 tokenizer，將文本轉換成模型可接受的輸入格式。
 
 | Model                                       | #params | Language  |
@@ -33,13 +33,13 @@
 [Hugging Face BERT community](https://huggingface.co/google-bert)。
 
 ### 資料集準備：
-定義了一個自訂的 Dataset 類別，用來建立訓練集和驗證集的 Dataset。
+定義了一個自訂的 Dataset 類別，用來建立訓練集和驗證集的 Dataset。<br/>
 使用 tokenizer 將文字轉換為模型可接受的輸入格式。
 
 ### 訓練模型：
-定義了計算評估指標的函式，包括準確率（accuracy）、召回率（recall）、精確率（precision）、F1 分數（F1 score）。
-初始化了 Trainer，設定了訓練相關的參數，包括訓練集、驗證集、計算評估指標的函式等。
-使用 trainer.train() 開始訓練模型，同時設置了提前停止訓練的機制，以防止過度擬合。
+定義了計算評估指標的函式，包括準確率（accuracy）、召回率（recall）、精確率（precision）、F1 分數（F1 score）。<br/>
+初始化了 Trainer，設定了訓練相關的參數，包括訓練集、驗證集、計算評估指標的函式等。<br/>
+使用 `trainer.train()` 開始訓練模型，同時設置了提前停止訓練的機制，以防止過度擬合。<br/>
 
 *   `output_dir`: 指定訓練過程中模型和日誌等輸出的目錄。
     
