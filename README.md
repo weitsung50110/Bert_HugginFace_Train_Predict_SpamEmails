@@ -1,6 +1,8 @@
 # 使用 Hugging Face 的 Transformers 來實現 BERT 模型的訓練微調（fine-tuning），以進行垃圾郵件的辨識分類。
 Using Hugging Face's Transformers to implement fine-tuning of the BERT model for classifying spam emails.
 
+垃圾郵件的Dataset可以去Kaggle下載 >> 
+[Kaggle SMS Spam Collection Dataset](https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset/data)。
 ## SMSSpamCollection_bert.py 訓練講解
 ### 資料準備：
 從 "SMSSpamCollection" 檔案中讀取資料，並分為訓練集和驗證集。<br/>
@@ -33,7 +35,7 @@ Using Hugging Face's Transformers to implement fine-tuning of the BERT model for
 
 [Hugging Face BERT community](https://huggingface.co/google-bert)。
 
-### 資料集準備：
+### 資料集tokenizer：
 定義了一個自訂的 Dataset 類別，用來建立訓練集和驗證集的 Dataset。<br/>
 使用 tokenizer 將文字轉換為模型可接受的輸入格式。
 
