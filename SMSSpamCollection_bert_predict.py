@@ -33,24 +33,26 @@ class Dataset(torch.utils.data.Dataset):
 # Load test data
 test_data  = pd.read_csv('SMSSpamCollection_test', sep='\t',
                            names=["message"])
-#test_data = pd.read_csv("test.csv")
+
+# 從測試資料中提取特徵
 X_test = list(test_data["message"])
 X_test_tokenized = tokenizer(X_test, padding=True, truncation=True, max_length=512)
+print(X_test_tokenized)
 
-# Create torch dataset
+# Create torch dataset # 創建 torch 資料集
 test_dataset = Dataset(X_test_tokenized)
 
-# Load trained model
+# Load trained model # 載入訓練好的模型
 model_path = "output/checkpoint-1500"
 model = BertForSequenceClassification.from_pretrained(model_path, num_labels=2)
 
-# Define test trainer
+# Define test trainer # 定義測試的 Trainer
 test_trainer = Trainer(model)
 
-# Make prediction
+# Make prediction # 進行預測
 raw_pred, _, _ = test_trainer.predict(test_dataset)
 
-# Preprocess raw predictions
+# Preprocess raw predictions # 處理原始預測值
 y_pred = np.argmax(raw_pred, axis=1)
 
 print(y_pred)
