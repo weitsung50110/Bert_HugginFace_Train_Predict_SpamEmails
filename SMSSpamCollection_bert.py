@@ -63,7 +63,6 @@ def compute_metrics(p):
     precision = precision_score(y_true=labels, y_pred=pred)
     f1 = f1_score(y_true=labels, y_pred=pred)
 
-    print("accuracy"+ accuracy, "precision"+precision, "recall"+recall, "f1"+f1)
     return {"accuracy": accuracy, "precision": precision, "recall": recall, "f1": f1}
 
 # Define Trainer # 定義 Trainer 的訓練參數
