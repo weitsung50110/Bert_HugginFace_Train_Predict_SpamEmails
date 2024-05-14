@@ -1,4 +1,5 @@
-# 如何使用 Hugging Face 的 Transformers 庫來實現 BERT 模型的微調（fine-tuning），以進行文本分類任務。
+# 使用 Hugging Face 的 Transformers 來實現 BERT 模型的訓練微調（fine-tuning），以進行垃圾郵件的辨識分類。
+Using Hugging Face's Transformers to implement fine-tuning of the BERT model for classifying spam emails.
 
 ## SMSSpamCollection_bert.py 訓練講解
 ### 資料準備：
