@@ -69,7 +69,7 @@ def compute_metrics(p):
 args = TrainingArguments(
     output_dir="output",
     evaluation_strategy="steps",
-    eval_steps=500,
+    eval_steps=300, #過程中每隔多久 用驗證集進行評估1次
     per_device_train_batch_size=8,
     per_device_eval_batch_size=8,
     num_train_epochs=3,
