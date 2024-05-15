@@ -39,20 +39,20 @@ Using Hugging Face's Transformers to implement fine-tuning of the BERT model for
 定義了一個自訂的 Dataset 類別，用來建立訓練集和驗證集的 Dataset。<br/>
 使用 tokenizer 將文字轉換為模型可接受的輸入格式。
 
-# 初始化 tokenizer
-tokenizer = BertTokenizer.from_pretrained(model_name)
-
-# 初始化模型
-model = BertForSequenceClassification.from_pretrained(model_name, num_labels=2)
-
-# 將資料集分成訓練集和驗證集
-X = list(df['message'])
-y = list(df['label'])
-X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2)
-
-# 使用 tokenizer 將文字轉換為模型可接受的輸入格式
-X_train_tokenized = tokenizer(X_train, padding=True, truncation=True, max_length=512)
-X_val_tokenized = tokenizer(X_val, padding=True, truncation=True, max_length=512)
+    # 初始化 tokenizer
+    tokenizer = BertTokenizer.from_pretrained(model_name)
+    
+    # 初始化模型
+    model = BertForSequenceClassification.from_pretrained(model_name, num_labels=2)
+    
+    # 將資料集分成訓練集和驗證集
+    X = list(df['message'])
+    y = list(df['label'])
+    X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2)
+    
+    # 使用 tokenizer 將文字轉換為模型可接受的輸入格式
+    X_train_tokenized = tokenizer(X_train, padding=True, truncation=True, max_length=512)
+    X_val_tokenized = tokenizer(X_val, padding=True, truncation=True, max_length=512)
 
     # Create torch dataset # 定義自訂的 Dataset 類別
     class Dataset(torch.utils.data.Dataset):
