@@ -35,9 +35,55 @@ Using Hugging Face's Transformers to implement fine-tuning of the BERT model for
 
 [Hugging Face BERT community](https://huggingface.co/google-bert)。
 
-### 資料集tokenizer：
+### 使用 tokenizer 轉換文字：
 定義了一個自訂的 Dataset 類別，用來建立訓練集和驗證集的 Dataset。<br/>
 使用 tokenizer 將文字轉換為模型可接受的輸入格式。
+
+# 初始化 tokenizer
+tokenizer = BertTokenizer.from_pretrained(model_name)
+
+# 初始化模型
+model = BertForSequenceClassification.from_pretrained(model_name, num_labels=2)
+
+# 將資料集分成訓練集和驗證集
+X = list(df['message'])
+y = list(df['label'])
+X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2)
+
+# 使用 tokenizer 將文字轉換為模型可接受的輸入格式
+X_train_tokenized = tokenizer(X_train, padding=True, truncation=True, max_length=512)
+X_val_tokenized = tokenizer(X_val, padding=True, truncation=True, max_length=512)
+
+    # Create torch dataset # 定義自訂的 Dataset 類別
+    class Dataset(torch.utils.data.Dataset):
+        def __init__(self, encodings, labels=None):
+            self.encodings = encodings
+            self.labels = labels
+    
+        def __getitem__(self, idx):
+            item = {key: torch.tensor(val[idx]) for key, val in self.encodings.items()}
+            if self.labels:
+                item["labels"] = torch.tensor(self.labels[idx])
+            return item
+    
+        def __len__(self):
+            return len(self.encodings["input_ids"])
+    
+    # 建立訓練集和驗證集的 Dataset
+    train_dataset = Dataset(X_train_tokenized, y_train)
+    val_dataset = Dataset(X_val_tokenized, y_val)
+
+**初始化 tokenizer 和模型**：使用 Hugging Face 的 Transformers 庫中的 `BertTokenizer` 和 `BertForSequenceClassification` 類別，從預訓練的 BERT 模型中初始化 tokenizer 和分類模型。`model_name` 指定了要使用的預訓練模型，這裡使用了 `bert-base-uncased`，這是一個英文模型
+
+**準備資料集**：從讀取的資料中取出文本和標籤，然後使用 `train_test_split` 函式將資料集分成訓練集和驗證集，其中設置了驗證集佔總資料集的 20%。
+
+**使用 tokenizer 轉換文字**：將訓練集和驗證集的文本資料使用 tokenizer 轉換成模型可接受的輸入格式。這包括將文本轉換成 token IDs，並進行 padding 和截斷，確保每個輸入序列的長度相同，這裡設置了最大長度為 512。
+
+**建立自訂的 Dataset 類別**：定義了一個自訂的 `Dataset` 類別，用來封裝資料集，使其可以被 PyTorch 的 DataLoader 使用。該類別接受 tokenized 的資料和對應的標籤，並在 `__getitem__` 方法中將其轉換成 PyTorch 張量格式。
+
+**建立訓練集和驗證集的 Dataset 物件**：將 tokenized 的訓練集和驗證集資料以及對應的標籤傳入自訂的 `Dataset` 類別，建立訓練集和驗證集的 Dataset 物件。
+
+這樣做的目的是為了準備好訓練所需的資料格式，使其可以被 PyTorch 模型接受並用於訓練。
 
 ### 訓練模型：
 定義了計算評估指標的函式，包括準確率（accuracy）、召回率（recall）、精確率（precision）、F1 分數（F1 score）。<br/>
