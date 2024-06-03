@@ -6,7 +6,7 @@ Using Hugging Face's Transformers to implement fine-tuning of the BERT model for
 ## 目錄Table of Contents
 - [指令介紹](#指令介紹)
 - [Docker image](#Docker-image)
-- [SMSSpamCollection_bert.py 訓練講解s](#SMSSpamCollection_bert.py-訓練講解)
+- [SMSSpamCollection_bert.py 訓練講解](#SMSSpamCollection_bert.py-訓練講解)
 - [SMSSpamCollection_bert_predict 預測講解](#SMSSpamCollection_bert_predict-預測講解)
 
 
