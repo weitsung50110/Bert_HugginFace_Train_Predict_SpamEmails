@@ -3,10 +3,23 @@ Using Hugging Face's Transformers to implement fine-tuning of the BERT model for
 
 垃圾郵件的Dataset可以去Kaggle下載 >> 
 [Kaggle SMS Spam Collection Dataset](https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset/data)。
-## SMSSpamCollection_bert.py 訓練講解
+## 目錄Table of Contents
+- [指令介紹](#指令介紹)
+- [Docker image](#Docker-image)
+- [SMSSpamCollection_bert.py 訓練講解s](#SMSSpamCollection_bert.py-訓練講解)
+- [SMSSpamCollection_bert_predict 預測講解](#SMSSpamCollection_bert_predict-預測講解)
+
+
 ### 指令介紹
     python SMSSpamCollection_bert.py #訓練指令
     python SMSSpamCollection_bert_predict.py #預測指令
+    
+### Docker image
+[weitsung50110/bert_huggingface](https://hub.docker.com/r/weitsung50110/bert_huggingface/tags) >> 此為我安裝好的 Docker image 環境。
+
+    docker pull weitsung50110/bert_huggingface:1.0
+
+## SMSSpamCollection_bert.py 訓練講解
 ### 資料準備：
 從 "SMSSpamCollection" 檔案中讀取資料，並分為訓練集和驗證集。<br/>
 將標籤轉換成模型可接受的格式，將 'ham' 改為 0，'spam' 改為 1。
