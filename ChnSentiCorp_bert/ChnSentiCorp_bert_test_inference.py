@@ -49,8 +49,8 @@ for text in test_texts:
 
 # 6. 輸出測試結果
 for i, (text, label, prediction) in enumerate(zip(test_texts, test_labels, predictions)):
-    print(f"示例 {i + 1}:")
-    print(f"文本: {text}")
+    print(f"範例 {i + 1}:")
+    print(f"內容: {text}")
     print(f"真實標籤: {'Positive' if label == 1 else 'Negative'}")
     print(f"模型預測: {prediction}")
     print("-" * 50)
